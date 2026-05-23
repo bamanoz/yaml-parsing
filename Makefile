@@ -3,7 +3,7 @@ TABULA_VERSION ?= v0.9.5
 TABULA_INSTALL := $(AGENT_HOME)/bin/tabula-install
 TABULA_INSTALLER_URL := https://raw.githubusercontent.com/bamanoz/tabula/$(TABULA_VERSION)/scripts/install.sh
 
-.PHONY: agent-install agent-prepare agent-run
+.PHONY: agent-install agent-prepare agent-run test
 
 agent-install:
 	@if [ ! -x "$(TABULA_INSTALL)" ]; then \
@@ -20,3 +20,7 @@ agent-prepare: agent-install
 
 agent-run: agent-install
 	TABULA_HOME="$(AGENT_HOME)" "$(TABULA_INSTALL)" app run --foreground
+
+test:
+	python3 -m unittest discover -s tests -v
+

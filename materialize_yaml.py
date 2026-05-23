@@ -42,7 +42,7 @@ def strip_yaml_comment(line: str) -> str:
 
     stripped = "".join(result).rstrip()
     if not stripped:
-        return ""
+        return newline if not content.strip() else ""
 
     return f"{stripped}{newline}"
 
