@@ -1,0 +1,51 @@
+{
+  "application": {
+    "id": "code-immune-tabula-dev",
+    "name": "Code Immune for Tabula Dev"
+  },
+  "bindings": {
+    "directory": [
+      {
+        "app": "code-immune-tabula-dev",
+        "kernel": "code-immune-tabula-dev",
+        "root": "/Users/mak/src/yaml-parsing"
+      }
+    ]
+  },
+  "distro": {
+    "id": "tabula.code-immune",
+    "lock": {
+      "bundles": {},
+      "clients": {},
+      "distro": "code-immune",
+      "distro_source": "git+https://github.com/bamanoz/tabula-distrib.git@main#path=code-immune",
+      "distro_version": "0.1.0",
+      "generated_at": "2026-05-23T18:28:27Z",
+      "plugins": {},
+      "skills": {},
+      "version": 3
+    },
+    "name": "code-immune",
+    "source": "git+https://github.com/bamanoz/tabula-distrib.git@main#path=code-immune"
+  },
+  "generated_at": "2026-05-23T18:28:27Z",
+  "kernel": {
+    "id": "code-immune-tabula-dev",
+    "mode": "managed",
+    "url": "ws://127.0.0.1:8089/ws"
+  },
+  "manifest_path": "/Users/mak/src/yaml-parsing/tabula.app.toml",
+  "runtimes": [
+    {
+      "exec": {
+        "backend": "bare"
+      },
+      "id": "local",
+      "mode": "managed",
+      "tenants": [
+        "code-immune-tabula-dev"
+      ]
+    }
+  ],
+  "version": 1
+}

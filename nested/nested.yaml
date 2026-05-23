@@ -1,0 +1,4 @@
+nested_key: nested_value
+!include: flat.yaml
+nested_struct:
+  !include: flat.yaml

@@ -1,0 +1,17 @@
+key: value
+nested_key: nested_value
+another_key: another_value
+and_another:
+  kek:
+    lol: foo
+nested_struct:
+  another_key: another_value
+  and_another:
+    kek:
+      lol: foo
+nested_key2: nested_value
+nested_struct2:
+  another_key: another_value
+  and_another:
+    kek:
+      lol: foo
