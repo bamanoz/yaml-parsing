@@ -162,6 +162,54 @@ token=$(cat .tabula/run/plugins/gateway-web/token)
 open "http://127.0.0.1:8765/?tenant_id=code-immune-tabula-dev&token=$token"
 ```
 
+## Run With Docker
+
+The repository also includes a single-container Docker deployment. The container
+runs Tabula, the installed distro, drivers, plugins, and gateway-web. This repo
+is mounted into the container as `/workspace`, and `TABULA_HOME` is
+`/workspace/.tabula`, so existing local config and secrets are reused.
+
+Build and start:
+
+```bash
+GITHUB_TOKEN=$(gh auth token) UID=$(id -u) GID=$(id -g) docker compose up --build -d
+```
+
+`GITHUB_TOKEN` is required because `tabula.app.toml` installs the private Tabula
+distro from GitHub. Provider API keys are still read from `.tabula/secrets.json`;
+they are not passed through Docker environment variables.
+
+Docker ports are intentionally different from the local foreground runner, so a
+local agent and Docker agent can run side by side:
+
+- `28089` -> container kernel `8089`
+- `28765` -> container gateway-web `8765`
+
+Open the Docker web gateway:
+
+```bash
+token=$(cat .tabula/run/plugins/gateway-web/token)
+open "http://127.0.0.1:28765/?token=$token"
+```
+
+Force a fresh reinstall from git sources:
+
+```bash
+docker compose down
+rm -rf .tabula/cache/git \
+  .tabula/tenants/code-immune-tabula-dev/plugins/gateway-web \
+  .tabula/plugins/gateway-web \
+  .tabula/run/plugins/gateway-web
+GITHUB_TOKEN=$(gh auth token) UID=$(id -u) GID=$(id -g) \
+  TABULA_DOCKER_REINSTALL=1 docker compose up --build -d --force-recreate
+```
+
+Stop the Docker agent:
+
+```bash
+docker compose down
+```
+
 ## Reset
 
 To remove the local install and start from scratch:
